@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-![GUI-1.png](https://registrationformusingjavascript.000webhostapp.com/Python%20GUI%20Bill%20Management%20System/GUI-1.png)
+![GUI-1.png](https://registrationformusingjavascript.000webhostapp.com/PythonGUIBillManagementSystem/GUI-1.png)
 
 ![Pic2.png](https://registrationformusingjavascript.000webhostapp.com/Python%20GUI%20Bill%20Management%20System/Pic2.png)
 
