@@ -1,0 +1,26 @@
+.full-width > *{
+    width: 100%;
+}
+
+.loginContainer{
+    width: 400px;
+}
+
+
+.login-header{
+    margin: 0 auto;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 10px;
+}
+
+.login-wrapper{
+    text-align: center;
+}
+
+.login-wrapper button{
+    height: 50px;
+    width: 100px!important;
+    font-size: 20px!important;
+}
