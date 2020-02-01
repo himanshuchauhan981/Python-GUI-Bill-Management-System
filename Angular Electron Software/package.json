@@ -1,15 +1,13 @@
 {
   "name": "angular-electron",
   "version": "0.0.0",
-  "main": "electron/dist/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "electron": "ng build --base-href ./ && tsc --p electron && electron ."
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
