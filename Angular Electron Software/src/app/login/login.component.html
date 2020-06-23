@@ -1,19 +1,19 @@
 <div class="container h-100 loginContainer">
     <div class="row h-100 justify-content-center align-items-center">
-        <form class="col-12">
+        <form class="col-12" [formGroup]="loginForm">
             <div class="full-width">
                 <p class="login-header">Login</p>
                 <mat-form-field appearance="outline">
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="Username">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="email" name="email" [formControl]="email">
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password">
+                    <input matInput placeholder="Password" name="password" [formControl]="password">
                 </mat-form-field>
             </div>
             <div class="login-wrapper">
-                <button mat-raised-button color="primary" class="loginButton">Login</button>
+                <button mat-raised-button color="primary" class="loginButton" (click)="loginUser(loginForm)">Login</button>
             </div>
         </form>
     </div>
