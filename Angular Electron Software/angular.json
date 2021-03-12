@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-electron",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "angular-electron"
-}
+  "defaultProject": "angular-electron",
+  "cli": {
+    "analytics": "d727b5d4-6d80-4eb1-8336-42ce37bc8bf2"
+  }
+} 

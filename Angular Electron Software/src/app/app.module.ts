@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import {MatFormFieldModule} from '@angular/material/form-field'
-import {MatInputModule } from '@angular/material'
-import {MatButtonModule} from '@angular/material/button'
+import { MatFormFieldModule } from '@angular/material/form-field'
+
+import { MatButtonModule } from '@angular/material/button'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 
@@ -21,7 +21,6 @@ import { LoginComponent } from './login/login.component'
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
