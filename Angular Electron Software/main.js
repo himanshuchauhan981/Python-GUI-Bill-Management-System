@@ -32,3 +32,7 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
   if (window === null) createBillManagementWindow();
 });
+
+require("electron-reload")(__dirname, {
+  electron: require(`${__dirname}/node_modules/electron`),
+});

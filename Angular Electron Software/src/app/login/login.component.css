@@ -1,26 +1,23 @@
-.full-width > *{
-    width: 100%;
+.loginButton {
+  width: 7em;
+  height: 2.8em;
 }
 
-.loginContainer{
-    width: 400px;
+.bg-white-50 {
+  background-color: #f5f5f5;
 }
 
-
-.login-header{
-    margin: 0 auto;
-    font-size: 40px;
-    text-align: center;
-    font-family: 'Roboto Mono', monospace;
-    margin-bottom: 10px;
+.software-heading {
+  font-family: "Roboto";
+  font-size: 30px;
 }
 
-.login-wrapper{
-    text-align: center;
+.software-sub-heading {
+  font-family: "Roboto";
+  font-size: 16px;
 }
 
-.login-wrapper button{
-    height: 50px;
-    width: 100px!important;
-    font-size: 20px!important;
+.description h3 {
+  font-family: "Roboto";
+  font-size: 36px;
 }

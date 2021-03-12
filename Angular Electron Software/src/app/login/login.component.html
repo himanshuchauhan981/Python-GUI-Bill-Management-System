@@ -1,20 +1,40 @@
-<div class="container h-100 loginContainer">
-    <div class="row h-100 justify-content-center align-items-center">
-        <form class="col-12" [formGroup]="loginForm">
-            <div class="full-width">
-                <p class="login-header">Login</p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput placeholder="email" name="email" [formControl]="email">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" name="password" [formControl]="password">
-                </mat-form-field>
-            </div>
-            <div class="login-wrapper">
-                <button mat-raised-button color="primary" class="loginButton" (click)="loginUser(loginForm)">Login</button>
-            </div>
-        </form>
+
+<div class="bg-white-50 h-100">
+    <div class="container d-flex justify-content-between align-items-center h-100">
+        <div>
+            <h3 class="fs-1 font-weight-bold">Make every day simple</h3>
+            <h4 class="fs-5">with the all new Bill management system</h4>
+            <p class="fs-6">A software that understands you and manages & simplifies your business</p>
+        </div>
+        <div>
+            <p class="text-center mb-0 software-heading">Smart way solutions</p>
+            <p class="text-center text-secondary mt-2 software-sub-heading">Empowering your business</p>
+            <mat-card>
+                <div class="py-3">
+                    <h1 class="text-center">Login</h1>
+                    <form [formGroup]='loginForm' (ngSubmit)='loginUser(loginForm)'>
+                        <mat-form-field appearance='outline' class="w-100">
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="Email address" name="email" formControlName='email' required>
+                            <mat-error *ngIf="loginFormControls.email.touched && loginFormControls.email.errors?.required">Required</mat-error>
+                            <mat-error *ngIf='loginFormControls.email.touched && loginFormControls.email.errors?.email'>Invalid email</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance='outline' class="w-100">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="Email address" name="password" formControlName='password' required>
+                            <mat-error *ngIf="loginFormControls.password.touched && loginFormControls.password.errors?.required">Required</mat-error>
+                        </mat-form-field>
+                        <div class="text-center">
+                            <button type="submit" class="loginButton" mat-raised-button color="primary">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <p class="cursor-pointer">Forget Password ?</p>
+                </div>
+            </mat-card>
+        </div>
     </div>
 </div>
+
+<!-- </div> -->
