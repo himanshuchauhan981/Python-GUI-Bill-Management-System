@@ -1,0 +1,28 @@
+.signup-background{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,0.006337569207370497) 0%, rgba(255,255,255,1) 0%, rgba(0,212,255,1) 91%);
+}
+
+.signup-card{
+    border-radius: 30px;
+}
+
+.left-section-heading p:first-child{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.left-section-heading p:last-child{
+    font-size: 11px;
+    color: grey;
+}
+
+.login-button{
+    margin-left: 14px !important;
+    font-size: 20px;
+    width: 90px;
+}
+
+.login-image{
+    border-radius: 10px;
+}
