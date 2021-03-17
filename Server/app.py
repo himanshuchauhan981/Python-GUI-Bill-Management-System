@@ -1,4 +1,9 @@
 from flask import Flask
-from db import db_config
 
-app = Flask(__name__)
+
+def create_flask_app():
+    app = Flask(__name__)
+
+    from modules.user.route import user_api
+    app.register_blueprint(user_api)
+    return app
