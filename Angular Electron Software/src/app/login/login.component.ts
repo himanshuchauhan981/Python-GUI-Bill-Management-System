@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 
-import { ApiService } from '../service/api.service'
+import { UserService } from '../service/user.service'
 
 @Component({
 	selector: 'login',
@@ -10,19 +10,25 @@ import { ApiService } from '../service/api.service'
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private apiService: ApiService) { }
+	constructor(private userService: UserService) { }
 
-	loginForm = new FormGroup({
+	emailForm = new FormGroup({
 		email: new FormControl('', [Validators.required, Validators.email]),
 		password: new FormControl('', Validators.required)
 	})
 
-	get loginFormControls() { return this.loginForm.controls }
+	mobileNumberForm = new FormGroup({
+		mobileNumber: new FormControl('', [Validators.required])
+	})
+
+	get emailFormControls() { return this.emailForm.controls }
+
+	get mobileNoFormControls() { return this.mobileNumberForm.controls }
 
 	ngOnInit() { }
 
 	loginUser(loginForm) {
-		this.apiService.loginUser(loginForm.value)
+		this.userService.loginUser(loginForm.value)
 			.subscribe((res: Response) => {
 				console.log(res)
 			})

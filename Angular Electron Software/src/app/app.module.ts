@@ -17,6 +17,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input'
 
+//Other imports
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +37,9 @@ import { MatInputModule } from '@angular/material/input'
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatInputModule
+    MatInputModule,
+
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

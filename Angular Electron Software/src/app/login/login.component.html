@@ -12,17 +12,17 @@
             <mat-card>
                 <div class="py-3">
                     <h1 class="text-center">Login</h1>
-                    <form [formGroup]='loginForm' (ngSubmit)='loginUser(loginForm)'>
+                    <form [formGroup]='emailForm' (ngSubmit)='loginUser(emailForm)'>
                         <mat-form-field appearance='outline' class="w-100">
                             <mat-label>Email</mat-label>
                             <input matInput placeholder="Email address" name="email" formControlName='email' required>
-                            <mat-error *ngIf="loginFormControls.email.touched && loginFormControls.email.errors?.required">Required</mat-error>
-                            <mat-error *ngIf='loginFormControls.email.touched && loginFormControls.email.errors?.email'>Invalid email</mat-error>
+                            <mat-error *ngIf="emailFormControls.email.errors?.required">Required</mat-error>
+                            <mat-error *ngIf='emailFormControls.email.errors?.email'>Invalid email</mat-error>
                         </mat-form-field>
                         <mat-form-field appearance='outline' class="w-100">
                             <mat-label>Password</mat-label>
                             <input matInput placeholder="Email address" name="password" formControlName='password' required>
-                            <mat-error *ngIf="loginFormControls.password.touched && loginFormControls.password.errors?.required">Required</mat-error>
+                            <mat-error *ngIf="emailFormControls.password.errors?.required">Required</mat-error>
                         </mat-form-field>
                         <div class="text-center">
                             <button type="submit" class="loginButton" mat-raised-button color="primary">Login</button>
@@ -32,6 +32,17 @@
                 <div class="d-flex justify-content-end">
                     <p class="cursor-pointer">Forget Password ?</p>
                 </div>
+                <p class="text-center">Or</p>
+                <form [formGroup]='mobileNumberForm'>
+                    <mat-form-field appearance='outline' class="w-100">
+                        <mat-label>Mobile number</mat-label>
+                        <input matInput mask="(+00) 00000-00000" placeholder="Mobile number" name='mobileNumber' formControlName='mobileNumber' required />
+                        <mat-error *ngIf='mobileNoFormControls.mobileNumber.touched'>Required</mat-error>
+                    </mat-form-field>
+                    <div class="text-center">
+                        <button type='submit' mat-raised-button color='primary'>Generate OTP</button>
+                    </div>
+                </form>
             </mat-card>
         </div>
     </div>
