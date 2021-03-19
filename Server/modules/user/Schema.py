@@ -6,7 +6,7 @@ class UserSchema:
         self.mobile_number_verified = mobile_number_verified
 
     def __repr__(self):
-        return f'User(mobile_number={self.mobile_number},user_id={self.user_id},email_verified={self.email_verified},mobile_number_verified={self.mobile_number_verified}) '
+        return f"Users(mobile_number={self.mobile_number},user_id={self.user_id},email_verified={self.email_verified},mobile_number_verified={self.mobile_number_verified}) "
 
     def to_dict(self):
         user_object = {

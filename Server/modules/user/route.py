@@ -1,8 +1,7 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify, make_response
 import json
 
 from modules.user.UserController import UserController
-
 
 user_api = Blueprint('user_api', __name__)
 
@@ -17,8 +16,7 @@ def signup():
     user_controller = UserController()
     signup_credentials = json.loads(request.data)
 
-    user = user_controller.signup_user(signup_credentials)
-
-
-    return signup_credentials
+    user_response = user_controller.signup_user(signup_credentials)
+    print(user_response)
+    return make_response(jsonify(user_response), 200)
 

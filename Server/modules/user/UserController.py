@@ -11,15 +11,20 @@ class UserController:
     def signup_user(self, credentials):
         response = {}
         try:
-            new_user = auth.create_user(email=credentials['email'], password=credentials['password'])
+            existing_user_doc = self.db.collection(u'users').where('mobile_number', '==',
+                                                                   credentials['mobile_number']).get()
 
-            user = UserSchema(credentials['mobile_number'], new_user.uid)
-            self.db.collection('user').add(user.to_dict())
-
+            if len(existing_user_doc) == 0:
+                new_user = auth.create_user(email=credentials['email'], password=credentials['password'])
+                user = UserSchema(credentials['mobile_number'], new_user.uid)
+                self.db.collection('users').add(user.to_dict())
+                response['data'] = {'msg': 'Signup successful', 'status': 200}
+            else:
+                response['data'] = {'msg': 'User already existed', 'status': 409}
         except exceptions.FirebaseError as error:
             if error.code == 'ALREADY_EXISTS':
-                response['msg'] = 'Email ID already existed'
+                response['msg'] = {'msg': 'User already existed', 'status': 409}
             else:
-                response['msg'] = 'Unexpected error'
+                response['msg'] = {'msg': 'Unexpected error', 'status': 400}
 
-        return 0
+        return response
