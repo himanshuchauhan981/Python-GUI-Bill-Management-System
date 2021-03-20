@@ -21,3 +21,7 @@
   font-family: "Roboto";
   font-size: 36px;
 }
+
+.login-card{
+  min-width: 400px;
+}

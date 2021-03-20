@@ -9,40 +9,47 @@
         <div>
             <p class="text-center mb-0 software-heading">Smart way solutions</p>
             <p class="text-center text-secondary mt-2 software-sub-heading">Empowering your business</p>
-            <mat-card>
-                <div class="py-3">
-                    <h1 class="text-center">Login</h1>
-                    <form [formGroup]='emailForm' (ngSubmit)='loginUser(emailForm)'>
-                        <mat-form-field appearance='outline' class="w-100">
-                            <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email address" name="email" formControlName='email' required>
-                            <mat-error *ngIf="emailFormControls.email.errors?.required">Required</mat-error>
-                            <mat-error *ngIf='emailFormControls.email.errors?.email'>Invalid email</mat-error>
-                        </mat-form-field>
-                        <mat-form-field appearance='outline' class="w-100">
-                            <mat-label>Password</mat-label>
-                            <input matInput placeholder="Email address" name="password" formControlName='password' required>
-                            <mat-error *ngIf="emailFormControls.password.errors?.required">Required</mat-error>
-                        </mat-form-field>
-                        <div class="text-center">
-                            <button type="submit" class="loginButton" mat-raised-button color="primary">Login</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <p class="cursor-pointer">Forget Password ?</p>
-                </div>
-                <p class="text-center">Or</p>
-                <form [formGroup]='mobileNumberForm'>
-                    <mat-form-field appearance='outline' class="w-100">
-                        <mat-label>Mobile number</mat-label>
-                        <input matInput mask="(+00) 00000-00000" placeholder="Mobile number" name='mobileNumber' formControlName='mobileNumber' required />
-                        <mat-error *ngIf='mobileNoFormControls.mobileNumber.touched'>Required</mat-error>
-                    </mat-form-field>
-                    <div class="text-center">
-                        <button type='submit' mat-raised-button color='primary'>Generate OTP</button>
+            <mat-card class="login-card">
+                <div class="p-3">
+                    <h1 class="text-center">ACCOUNT LOGIN</h1>
+                    <div *ngIf='!showPassword'>
+                        <form [formGroup]='loginForm' (ngSubmit)='showPasswordDialog()'>
+                            <mat-form-field appearance='outline' class="w-100">
+                                <mat-label>Mobile number or Email address</mat-label>
+                                <input matInput placeholder="Mobile number or Email address" name="username" formControlName='username' required />
+                                <mat-error *ngIf="loginFormControls.username.errors?.required">Required</mat-error>
+                                <mat-error *ngIf="loginFormControls.username.errors?.incorrect">Invalid email or mobile number</mat-error>
+                            </mat-form-field>
+                            <div id="recaptcha-container"></div>
+                            <button type='submit' class="loginButton w-100" mat-raised-button color='primary'>Next</button>
+                        </form>
                     </div>
-                </form>
+                    <div *ngIf='showPassword && !hideEmailLogin'>
+                        <form [formGroup]='passwordForm' (ngSubmit)='loginUser(passwordForm)'>
+                            <mat-form-field appearance='outline' class="w-100">
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="Password" name="password" formControlName='password' type="password" required>
+                                <mat-error *ngIf="passwordFormControls.password.errors?.required">Required</mat-error>
+                            </mat-form-field>
+                            <button type='submit' class="loginButton w-100" mat-raised-button color='primary'>Login</button>
+                        </form>
+                    </div>
+                    <div *ngIf='showPassword && hideEmailLogin'>
+                        <form [formGroup]='otpForm' (ngSubmit)='loginUser(passwordForm)'>
+                            <mat-form-field appearance='outline' class="w-100">
+                                <mat-label>OTP</mat-label>
+                                <input matInput mask="0 0 0 0 0 0" placeholder="Verify OTP" name='otp' formControlName='otp' required />
+                                <mat-error *ngIf="otpFormControls.otp.errors?.required">Required</mat-error>
+                            </mat-form-field>
+                            <button type='submit' class="loginButton w-100" mat-raised-button color='primary'>Verify</button>
+                        </form>
+                        
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="cursor-pointer">Forget Password ?</p>
+                    <p>No account ? Sign up</p>
+                </div>
             </mat-card>
         </div>
     </div>

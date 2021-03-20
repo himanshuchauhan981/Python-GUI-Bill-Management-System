@@ -11,6 +11,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   loginUser(credentials) {
-    return this.http.post(`${environment}/login`, credentials)
+    return this.http.post(`${environment.apiUrl}/login`, credentials)
+  }
+
+  get windowRef() {
+    return window
   }
 }

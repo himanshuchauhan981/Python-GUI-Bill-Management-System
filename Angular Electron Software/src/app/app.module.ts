@@ -16,10 +16,18 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input'
+import { MatIconModule } from '@angular/material/icon'
 
 //Other imports
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { SignupComponent } from './signup/signup.component'
+import { credentials } from '../environments/firebase_credentials'
+import { AngularFireModule } from '@angular/fire'
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule, } from '@angular/fire/auth';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
@@ -40,8 +48,15 @@ import { SignupComponent } from './signup/signup.component'
     MatCardModule,
     MatGridListModule,
     MatInputModule,
+    MatIconModule,
 
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    AngularFireModule.initializeApp(credentials),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireMessagingModule,
+    AngularFireFunctionsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
