@@ -20,8 +20,10 @@
                                 <mat-error *ngIf="loginFormControls.username.errors?.required">Required</mat-error>
                                 <mat-error *ngIf="loginFormControls.username.errors?.incorrect">Invalid email or mobile number</mat-error>
                             </mat-form-field>
-                            <div id="recaptcha-container"></div>
-                            <button type='submit' class="loginButton w-100" mat-raised-button color='primary'>Next</button>
+                            <div  class="d-flex justify-content-center mb-4">
+                                <div id="recaptcha-container"></div>
+                            </div>
+                            <button type='submit' [disabled]='disableButton' class="loginButton w-100" mat-raised-button color='primary'>Next</button>
                         </form>
                     </div>
                     <div *ngIf='showPassword && !hideEmailLogin'>
@@ -35,7 +37,7 @@
                         </form>
                     </div>
                     <div *ngIf='showPassword && hideEmailLogin'>
-                        <form [formGroup]='otpForm' (ngSubmit)='loginUser(passwordForm)'>
+                        <form [formGroup]='otpForm' (ngSubmit)='loginUser(otpForm)'>
                             <mat-form-field appearance='outline' class="w-100">
                                 <mat-label>OTP</mat-label>
                                 <input matInput mask="0 0 0 0 0 0" placeholder="Verify OTP" name='otp' formControlName='otp' required />

@@ -19,7 +19,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 	hideEmailLogin: boolean = false;
 
+	disableButton: boolean = true;
+
 	windowRef: any;
+
+	otpConfirmationDetails: any;
 
 	loginForm = new FormGroup({
 		username: new FormControl('', Validators.required)
@@ -45,7 +49,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		this.windowRef.recaptchaVerifier = new firebase.default.auth.RecaptchaVerifier('recaptcha-container')
+		this.windowRef.recaptchaVerifier = new firebase.default.auth.RecaptchaVerifier('recaptcha-container', {
+			'callback': (response) => {
+				this.disableButton = false
+			},
+			'expired-callback': () => {
+				this.disableButton = true
+			}
+		})
 		this.windowRef.recaptchaVerifier.render()
 	}
 
@@ -59,21 +70,46 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 		}
 		else if (/^\d+$/.test(credentials)) {
-			this.showPassword = true;
-			this.hideEmailLogin = true;
+			let appVerifier = this.windowRef.recaptchaVerifier;
+			let mobileNumber: string = this.loginFormControls['username'].value;
+			let loginType: string = 'verifyMobileNumber';
+			this.signInWithMobileNumber(appVerifier, mobileNumber, loginType)
 		}
 		else {
+			this.showPassword = false;
+
 			this.loginFormControls['username'].setErrors({ 'incorrect': true })
 		}
 	}
 
+	signInWithMobileNumber(appVerifier, mobileNumber: string, loginType: string) {
+		firebase.default.auth().signInWithPhoneNumber(`+91${mobileNumber}`, appVerifier).then((result) => {
+			this.showPassword = true;
+			this.hideEmailLogin = true;
+			this.otpConfirmationDetails = result;
+		})
+	}
+
 	loginUser(form: FormGroup) {
-		let email = this.loginFormControls['username'].value;
+		let username: string = this.loginFormControls['username'].value;
 		let password = this.passwordFormControls['password'].value;
+		let appVerifier = this.windowRef.recaptchaVerifier;
+		let userData = {}
+
+		// userData['loginType'] =  ? 'mobileNumber' : 'email'
+		userData['appVerifier'] = appVerifier;
+		userData['credentials'] = username;
+		userData['password'] = password;
 
 		if (form.valid) {
-			console.log(form.controls)
-			// this.userService.loginUser({ email, password }).subscribe(res => { })
+			if (/^\d+$/.test(username)) {
+				let otp = this.otpFormControls['otp'].value;
+				this.otpConfirmationDetails.confirm(otp).then(result => {
+					console.log(result)
+				})
+
+			}
+			// this.userService.loginUser(userData).subscribe(res => { })
 		}
 
 	}
